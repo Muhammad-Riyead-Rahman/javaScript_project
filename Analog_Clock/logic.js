@@ -1,16 +1,27 @@
-var second = 0;
-var minute = 0;
-var hour = 0;
-var d = new Date();
+var hour = document.getElementById("hour");
+var minute = document.getElementById("minute");
+var seconds = document.getElementById("seconds");
 
-setInterval(
-    function() {
-        d = new Date();
-        second = d.getSeconds() * 6;
-        minute = d.getMinutes() * 6;
-        hour = d.getHours() * 30 + Math.round(minute / 12);
-        document.getElementById("second-hand").style.transform = "rotate(" + second + "deg)";
-        document.getElementById("minute-hand").style.transform = "rotate(" + minute + "deg)";
-        document.getElementById("hour-hand").style.transform = "rotate(" + hour + "deg)";
-    }, 1000
+var clock = setInterval(
+    function time(){
+    var date = new Date();
+    var hr = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+
+    if ( hr < 10 ) {
+        hr = "0" + hr;
+    }
+    if( min < 10 ) {
+        min = "0" + min;
+    }
+    if( sec < 10 ) {
+        sec = "0" + sec;
+    }
+
+    hour.textContent = hr;
+    minute.textContent = min;
+    seconds.textContent = sec;
+
+}, 1000
 );
